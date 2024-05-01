@@ -5,6 +5,7 @@ import os
 from langchain_groq import ChatGroq
 from langchain_community.chat_models import ChatOllama
 from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool, PDFSearchTool
+from langchain_community.tools import DuckDuckGoSearchRun
 
 
 class ReportingAgents:
@@ -12,6 +13,8 @@ class ReportingAgents:
     web_search_tool = WebsiteSearchTool()
     scrape_tool = ScrapeWebsiteTool()
     pdf_search_tool = PDFSearchTool()
+    duck_duck_go_tool = DuckDuckGoSearchRun()
+    exa_search_tool_set = ExaSearchToolSet()
     def __init__(self):
         
         self.llm =ChatGroq(
@@ -27,7 +30,7 @@ class ReportingAgents:
         return Agent(
             role="Research Specialist",
             goal="Fetch the top news, stories and articled about AI and ML advancement in the manufacturing industry and process optimization.", 
-            tools=[self.search_tool],
+            tools=[self.exa_search_tool_set.search, self.exa_search_tool_set.get_content],
             backstory=dedent(
                 """\
                 As a digital sleuth, you scour the internet for information for the latest and
@@ -43,8 +46,9 @@ class ReportingAgents:
         return Agent(
             role="Industry Analyst",
             goal="""Identify and implement AI-driven strategies for optimizing manufacturing processes, focusing on efficiency, productivity, and innovation.
-            You can extract content from web urls using the web_search tool.""",
-            tools=[self.web_search_tool, self.pdf_search_tool],
+            You can extract content from web urls using the web and pdf search tools.""",
+            # tools=[self.web_search_tool, self.pdf_search_tool],
+            tools=[self.exa_search_tool_set.get_content, self.pdf_search_tool],
             backstory=dedent(
                 """\
                 With a keen analytical mind, this agent dives deep into the complexities of manufacturing processes. 
@@ -52,7 +56,7 @@ class ReportingAgents:
             ),
             verbose=True,
             llm = self.llm,
-            max_iter=2,
+            max_iter=5,
             allow_delegation=True
         )
 
@@ -68,20 +72,6 @@ class ReportingAgents:
             ),
             verbose=True,
             llm = self.llm,
-            max_iter=2,
-            allow_delegation=True
-        )
-    def translator_agent(self):
-        return Agent(
-            role="Translator EN-BG",
-            goal="Provide high-quality translations from English to Bulgarian, ensuring accurate conveyance of technical and industry-specific terms.",
-            backstory=dedent(
-                """\
-                This agent excels in linguistic precision and cultural nuance, bridging the gap between English and Bulgarian speakers. 
-                With a deep understanding of both languages and the manufacturing sector, it ensures that every translation is both accurate and contextually relevant."""
-            ),
-            verbose=True,
-            llm=self.llm_bg, 
-            max_iter=15,
+            max_iter=5,
             allow_delegation=True
         )

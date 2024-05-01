@@ -6,13 +6,15 @@ class ReportingTasks():
         return Task(
             description=description,
             expected_output=dedent("""\
-                A list of PDF files related to the task description.
+                A list of at lease 5 urls containing PDF files or articlesrelated to the task description. Ensure the PDF files
+                do exist on the URL and the articles are readable and complete.
                 Example Output:
                 [
-                    {'title': 'Top AI News Articles', 
-                    'url': 'https://example.com/ai-news', 
-                    'abstract': 'A short info about the file content'},
-                    {{...}}
+                    'url': 'https://example.com/ai-news1/file.pdf', 
+                    'url': 'https://example.com/ai-news2/file.pdf', 
+                    'url': 'https://example.com/ai-news3', 
+                    'url': 'https://example.com/ai-news4', 
+                    'url': 'https://example.com/ai-news5', 
                 ]
                 """),
             agent=agent,
@@ -22,12 +24,12 @@ class ReportingTasks():
     def industry_analysis_task(self, agent,  context, file_name=None):
         return Task(
 			description=dedent("""
-				Analyze each news, story or article and ensure there are at least
-                5 well formated articles on the subject of process optimization, proactive maintenace, 
-                and digital twins.
+				Analyze strictly each PDF file or article using the provided web and pdf search tools.
+                Use information only form the extracted urls or PDF files to generate an analysis.
             """),
 			expected_output=dedent("""
-				A well formated detailed analysis for each news story or article.
+				A well formated detailed analysis for each news story or article. Your output should be long and as reach as possible,
+                while capturing all relevant information from the sources you are analysing.
             """),
 			async_execution=False,
 			agent=agent,
@@ -38,12 +40,10 @@ class ReportingTasks():
     def reporting_task(self, agent,  context, file_name=None):
         return Task(
 			description=dedent("""
-				A complete report on the process optimization sith AI, proactive maintenace, and digital twins
-                in the pulp and paper industry.
+				A complete report on the provided contextual material.
             """),
 			expected_output=dedent("""
-				A well formated detailed report with recommendations and descriptions
-                for each news story or article.
+				A well written article with technical and business information on the subject.
             """),
 			async_execution=False,
 			agent=agent,
@@ -51,17 +51,6 @@ class ReportingTasks():
             output_file=f"output/{file_name}",
         )
         
-    # def translation_task(self, agent,  context):
-    #     return Task(
-	# 		description=dedent("""
-	# 			A complete translation of the provided context from English to Bulgarian language.
-    #         """),
-	# 		expected_output=dedent("""
-	# 			A well formated detailed report in Bulgarian language.
-    #         """),
-	# 		async_execution=False,
-	# 		agent=agent,
-    #         context = context
-    #     )
+
     
     
