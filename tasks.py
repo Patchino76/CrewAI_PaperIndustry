@@ -2,26 +2,16 @@ from textwrap import dedent
 from crewai import Task
 
 class ReportingTasks():
-    def research_task(self, agent):
+    def research_task(self, agent, description):
         return Task(
-            description=dedent("""\
-                Conduct a web-based research focusing on the integration of AI and ML in the industrial manufacturing processes, 
-                specifically within the pulp and paper industry. This includes exploring the application of digital twins for 
-                real-time simulation and optimization, proactive maintenance strategies to prevent downtime, and the use of 
-                Bayesian inference, machine learning, and deep learning techniques for process optimization. Investigate how 
-                ML systems can recommend the best setpoints to PLCs (Programmable Logic Controllers) and SCADA (Supervisory Control 
-                and Data Acquisition) systems to achieve optimum quality and energy efficiency. Gather information on recent 
-                news, achievements, professional backgrounds, and any relevant information about these advanced technologies 
-                and their impact on production process optimization and improvement.
-                """),
+            description=description,
             expected_output=dedent("""\
-                A list of the top AI news articles related to the pulp and paper industry including a
-                summary for each of them.
+                A list of  detailed articles related to the task description.
                 Example Output:
                 [
                     {'title': 'Top AI News Articles', 
                     'url': 'https://example.com/ai-news', 
-                    'summary': 'Summary of the article'},
+                    'description': 'The detailed description of the article'},
                     {{...}}
                 ]
                 """),
@@ -43,7 +33,7 @@ class ReportingTasks():
             context = context
         )
         
-    def reporting_task(self, agent,  context):
+    def reporting_task(self, agent,  context, file_name):
         return Task(
 			description=dedent("""
 				A complete report on the process optimization sith AI, proactive maintenace, and digital twins
@@ -55,20 +45,21 @@ class ReportingTasks():
             """),
 			async_execution=False,
 			agent=agent,
-            context = context
+            context = context,
+            output_file=f"output/{file_name}.txt",
         )
         
-    def translation_task(self, agent,  context):
-        return Task(
-			description=dedent("""
-				A complete translation of the provided context from English to Bulgarian language.
-            """),
-			expected_output=dedent("""
-				A well formated detailed report in Bulgarian language.
-            """),
-			async_execution=False,
-			agent=agent,
-            context = context
-        )
+    # def translation_task(self, agent,  context):
+    #     return Task(
+	# 		description=dedent("""
+	# 			A complete translation of the provided context from English to Bulgarian language.
+    #         """),
+	# 		expected_output=dedent("""
+	# 			A well formated detailed report in Bulgarian language.
+    #         """),
+	# 		async_execution=False,
+	# 		agent=agent,
+    #         context = context
+    #     )
     
     
