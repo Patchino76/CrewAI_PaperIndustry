@@ -4,18 +4,20 @@ from tools import ExaSearchToolSet
 import os
 from langchain_groq import ChatGroq
 from langchain_community.chat_models import ChatOllama
-from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool
+from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool, PDFSearchTool
 
 
 class ReportingAgents:
-    search_tool = SerperDevTool(n_results=5)
+    search_tool = SerperDevTool(n_results=1)
     web_search_tool = WebsiteSearchTool()
     scrape_tool = ScrapeWebsiteTool()
+    pdf_search_tool = PDFSearchTool()
     def __init__(self):
         
         self.llm =ChatGroq(
             api_key = os.getenv("GROQ_API_KEY"),
-            model = "llama3-70b-8192" #"mixtral-8x7b-32768"
+            model = "llama3-70b-8192" 
+            # model = "mixtral-8x7b-32768",
         )
         self.llm_bg = ChatOllama(
             model = "tazarov/bg-gpt",
@@ -25,7 +27,7 @@ class ReportingAgents:
         return Agent(
             role="Research Specialist",
             goal="Fetch the top news, stories and articled about AI and ML advancement in the manufacturing industry and process optimization.", 
-            tools=[self.search_tool, self.web_search_tool],
+            tools=[self.search_tool],
             backstory=dedent(
                 """\
                 As a digital sleuth, you scour the internet for information for the latest and
@@ -33,7 +35,7 @@ class ReportingAgents:
             ),
             verbose=True,
             llm = self.llm,
-            max_iter=2,
+            max_iter=5,
             
         )
 
@@ -42,7 +44,7 @@ class ReportingAgents:
             role="Industry Analyst",
             goal="""Identify and implement AI-driven strategies for optimizing manufacturing processes, focusing on efficiency, productivity, and innovation.
             You can extract content from web urls using the web_search tool.""",
-            tools=[self.web_search_tool],
+            tools=[self.web_search_tool, self.pdf_search_tool],
             backstory=dedent(
                 """\
                 With a keen analytical mind, this agent dives deep into the complexities of manufacturing processes. 

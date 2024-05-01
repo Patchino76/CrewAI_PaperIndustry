@@ -1,0 +1,22 @@
+[
+    {
+        'title': 'Predictive Maintenance Using AI and Machine Learning',
+        'url': 'https://www.analyticsvidhya.com/blog/2021/02/predictive-maintenance-using-ai-and-machine-learning/',
+        'body': 'This article provides an in-depth overview of predictive maintenance and how AI and machine learning can be used to develop a predictive maintenance model. While not specific to the paper mill industry, it offers valuable insights and methodologies that can be applied to the task at hand.'
+    },
+    {
+        'title': 'Predictive Maintenance in Manufacturing: AI and IoT Use Case',
+        'url': 'https://www.iotforall.com/predictive-maintenance-ai-and-iot-use-case',
+        'body': 'This article focuses on the application of AI and IoT in predictive maintenance in the manufacturing industry. It includes a case study that demonstrates the potential benefits and cost savings of proactive maintenance. The concepts presented can be used to develop a predictive maintenance model for a paper mill machine.'
+    },
+    {
+        'title': 'Machine Learning in Predictive Maintenance: A Comprehensive Guide',
+        'url': 'https://www.kdnuggets.com/2020/03/machine-learning-predictive-maintenance.html',
+        'body': 'This comprehensive guide offers a deep dive into the use of machine learning in predictive maintenance. It covers various machine learning algorithms, sensor data analysis, and model deployment. The information in this article can be used as a foundation for creating a predictive maintenance model for a paper mill machine.'
+    },
+    {
+        'title': 'Machine Condition Monitoring and Predictive Maintenance',
+        'url': 'https://www.researchgate.net/publication/324553159_Machine_Condition_Monitoring_and_Predictive_Maintenance',
+        'body': 'This research paper discusses machine condition monitoring and predictive maintenance techniques for industrial machinery. It includes the application of AI and machine learning algorithms for predicting machine failures and scheduling proactive maintenance. The findings of this research can be applied to the development of a predictive maintenance model for a paper mill machine.'
+    }
+]

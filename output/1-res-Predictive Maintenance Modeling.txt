@@ -1,0 +1,11 @@
+[
+    {'title': 'Artificial Intelligence in the Pulp and Paper Industry', 
+    'url': 'https://www.diva-portal.org/smash/get/diva2:1460863/FULLTEXT01.pdf', 
+    'abstract': 'This paper discusses the application of artificial intelligence in the pulp and paper industry, including predictive maintenance and quality control.'},
+    {'title': 'Machine Learning Framework for Predictive Maintenance in Milling', 
+    'url': 'https://www.sciencedirect.com/science/article/pii/S240589631931122X', 
+    'abstract': 'This paper presents a machine learning framework for predictive maintenance in milling, which can be applied to the paper mill machine industry.'},
+    {'title': 'Artificial Intelligence for Predictive Maintenance Applications', 
+    'url': 'https://www.mdpi.com/2076-3417/14/2/898', 
+    'abstract': 'This paper reviews the application of artificial intelligence in predictive maintenance, including its application in the paper mill machine industry.'}
+]
